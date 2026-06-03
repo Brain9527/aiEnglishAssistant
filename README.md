@@ -1,67 +1,99 @@
-# AI 英语精读助手 (AI English Intensive Reading Assistant)
+# 📖 AI 英语精读助手 (AI English Intensive Reading Assistant)
 
-一款基于 AI 驱动的英语精读学习工具，采用“一元一辅切”阅读法，帮助用户深度理解英文内容。
+一款基于 DeepSeek AI 驱动的英语精读学习工具，深度集成“一元一辅切”阅读法，旨在帮助英语学习者通过 AI 辅助，实现对英文长难句、新闻、小说的深度拆解与沉浸式学习。
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Vue](https://img.shields.io/badge/vue-3.5-brightgreen.svg)
-![TypeScript](https://img.shields.io/badge/typescript-5.0-blue.svg)
-![Vite](https://img.shields.io/badge/vite-6.0-orange.svg)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Vue](https://img.shields.io/badge/Vue-3.5-brightgreen.svg)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6.0-orange.svg)](https://vitejs.dev/)
+[![Element Plus](https://img.shields.io/badge/Element%20Plus-2.8-blue.svg)](https://element-plus.org/)
 
-## 🌟 核心特性
+---
 
-- **一元一辅切分析**：利用 DeepSeek API 对英文文本进行语义拆解，提供段落、句子、词汇三级深度分析。
-- **流式渲染**：实时展示 AI 分析过程，无需长时间等待。
-- **多维度发音**：支持全文朗读、单句点读、单词发音，具备完善的播放控制（暂停/继续/停止）。
-- **智能词卡**：鼠标悬停单词即可查看音标与中文释义，支持一键加入生词本。
-- **生词本系统**：自动保存生词，支持按词义搜索与持久化存储。
-- **现代化 UI**：ChatGPT 风格的侧边交互布局，支持深色/浅色/系统跟随模式。
-- **数据导出**：支持将分析结果一键导出为 HTML 或 Markdown 格式，方便离线复习。
+## 🧭 什么是“一元一辅切”？
 
-## 🛠️ 技术栈
+本工具核心逻辑基于高效的英语阅读法：
+- **一元**：识别句子的核心谓词（主干）。
+- **一辅**：识别修饰成分（从句、介词短语等辅助成分）。
+- **一切**：通过语义切分，将长难句化整为零。
 
-- **Frontend**: Vue 3 (Composition API)
-- **Language**: TypeScript
-- **Build Tool**: Vite
-- **UI Framework**: Element Plus
-- **State Management**: Pinia
-- **HTTP Client**: Axios / Native Fetch (Stream)
-- **Router**: Vue Router
-- **Style**: SCSS / CSS Variables
+AI 会自动根据此方法对您粘贴的内容进行分段、切句、并提取核心词汇。
 
-## 🚀 快速开始
+---
 
-### 1. 克隆项目
-```bash
-git clone <your-repo-url>
-cd aiEnglishAssistant
+## ✨ 核心特性
+
+- **🤖 AI 深度分析**：调用 DeepSeek 模型，实时生成“一元一辅切”分析结果，包含精准翻译与音标。
+- **🌊 流式交互体验**：采用 SSE 流式输出技术，分析结果实时滚动，无需漫长等待。
+- **🔊 沉浸式朗读**：
+  - **全文模式**：支持一键连读，具备暂停、继续、停止功能。
+  - **单句点读**：点击句子即可精准发音。
+  - **单词跟读**：词卡内置发音按钮。
+- **🔍 智能交互词卡**：鼠标悬停单词即可弹出详细释义，支持一键收藏。
+- **📔 数字化生词本**：自动持久化存储生词，支持模糊搜索，构建个人专属词库。
+- **🌗 极致视觉体验**：完美支持深色模式、浅色模式及系统自动跟随。
+- **📄 学习资料导出**：支持将分析结果导出为 **HTML** 或 **Markdown**，方便打印或导入 Notion/Obsidian。
+
+---
+
+## 🛠️ 技术实现
+
+### 前端架构
+- **框架**: Vue 3 (Composition API) + TypeScript
+- **构建**: Vite + SCSS
+- **状态**: Pinia (持久化存储用户设置与词库)
+- **UI**: Element Plus (响应式布局)
+- **API**: 原生 Fetch (用于流式处理) + Axios
+
+### 关键目录
+```text
+src/
+├── api/          # DeepSeek API 封装与流式逻辑
+├── components/   # 核心组件（词卡、结果展示、设置弹窗）
+├── stores/       # Pinia 状态管理（配置、生词本、缓存）
+├── utils/        # 语音合成封装、Storage 封装
+├── views/        # 首页与生词本视图
+└── types/        # 严谨的 TypeScript 类型定义
 ```
 
-### 2. 安装依赖
+---
+
+## 🚀 快速上手
+
+### 1. 本地运行
 ```bash
+# 安装依赖
 npm install
-```
 
-### 3. 运行开发服务器
-```bash
+# 启动开发服务器
 npm run dev
 ```
 
-### 4. 配置 API
-打开浏览器访问 `http://localhost:5173`，点击右上角设置图标，填入您的 **DeepSeek API Key** 即可开始使用。
+### 2. 配置 API Key
+1. 访问 [DeepSeek 开放平台](https://platform.deepseek.com/) 获取 API Key。
+2. 在应用右上角点击 **设置**。
+3. 输入 API Key 并点击 **测试连接**。
 
-## 🔒 安全性说明
+---
 
-本项目采用 **BYOK (Bring Your Own Key)** 模式：
-- **无后端存储**：您的 API Key 仅存储在浏览器的 `localStorage` 中，不会上传到任何第三方服务器。
-- **直接通信**：API 请求直接从您的浏览器发送至 DeepSeek 官方接口。
-- **开源透明**：所有源码公开，您可以随时检查代码中是否存在 Key 泄露风险。
+## 🔒 安全与隐私
 
-## 📦 部署建议
+本项目采用 **BYOK (Bring Your Own Key)** 架构，极度重视隐私：
+- **Key 安全**：您的 API Key 仅存储在浏览器本地 `localStorage` 中。
+- **无中转**：所有请求直接从浏览器发往 DeepSeek 官方接口，无后端中转，不存在 Key 被窃取的风险。
+- **纯静态**：项目可完全离线运行（除 AI 分析请求外）。
 
-由于本项目是纯静态应用，您可以轻松部署到以下平台：
-- Vercel / Netlify / Cloudflare Pages
-- GitHub Pages
-- 私有服务器 (Nginx / Apache)
+---
+
+## 📦 部署指南
+
+### GitHub Pages 部署 (推荐)
+本项目已预置 GitHub Actions 自动化部署脚本：
+1. 在 GitHub 仓库设置中，进入 **Settings > Pages**。
+2. 将 **Build and deployment > Source** 改为 **GitHub Actions**。
+3. 推送代码至 `main` 分支，系统将自动使用 **Node.js 24** 进行构建并发布。
+
+---
 
 ## 📄 开源协议
 
