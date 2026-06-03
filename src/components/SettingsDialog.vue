@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useSettingsStore } from '../stores/settings';
 import { testConnection } from '../api/deepseek';
 import { ElMessage } from 'element-plus';
@@ -14,6 +14,23 @@ const emit = defineEmits<{
 
 const settingsStore = useSettingsStore();
 const testing = ref(false);
+const windowWidth = ref(window.innerWidth);
+
+const updateWidth = () => {
+  windowWidth.value = window.innerWidth;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', updateWidth);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWidth);
+});
+
+const dialogWidth = computed(() => {
+  return windowWidth.value <= 768 ? '90%' : '500px';
+});
 
 const handleClose = () => {
   emit('update:modelValue', false);
@@ -49,7 +66,7 @@ const handleTest = async () => {
     title="系统设置"
     :model-value="modelValue"
     @update:model-value="emit('update:modelValue', $event)"
-    width="500px"
+    :width="dialogWidth"
     destroy-on-close
   >
     <el-form label-position="top">

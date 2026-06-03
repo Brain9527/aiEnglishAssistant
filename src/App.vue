@@ -101,9 +101,22 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--el-border-color-light);
-  padding: 0 20px;
+  padding: 0 12px;
   background-color: var(--el-bg-color);
   z-index: 100;
+}
+
+.logo span {
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0 8px;
+  }
+  .logo span {
+    display: none; /* 在小屏幕上隐藏文字 logo，只留图标 */
+  }
 }
 
 .logo {

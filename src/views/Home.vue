@@ -252,11 +252,29 @@ const downloadFile = (content: string, fileName: string, type: string) => {
   height: calc(100vh - var(--header-height));
 }
 
+@media (max-width: 768px) {
+  .home-view {
+    flex-direction: column;
+    overflow-y: auto;
+    height: calc(100vh - var(--header-height));
+  }
+}
+
 .left-panel {
   flex: 1;
   border-right: 1px solid var(--el-border-color-light);
   display: flex;
   flex-direction: column;
+  min-height: 300px;
+}
+
+@media (max-width: 768px) {
+  .left-panel {
+    border-right: none;
+    border-bottom: 1px solid var(--el-border-color-light);
+    flex: none;
+    height: 40%;
+  }
 }
 
 .english-input :deep(.el-textarea__inner) {
@@ -275,15 +293,23 @@ const downloadFile = (content: string, fileName: string, type: string) => {
   display: flex;
   flex-direction: column;
   background-color: var(--el-bg-color-page);
+  min-height: 0;
+}
+
+@media (max-width: 768px) {
+  .right-panel {
+    flex: 1;
+  }
 }
 
 .toolbar {
-  padding: 10px 20px;
+  padding: 8px 12px;
   background-color: var(--el-bg-color);
   border-bottom: 1px solid var(--el-border-color-light);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .result-container {

@@ -89,11 +89,22 @@ const formatDate = (timestamp: number) => {
 
 <style scoped>
 .vocabulary-view {
-  padding: 30px;
+  padding: 20px 12px;
   max-width: 1000px;
   margin: 0 auto;
   background-color: var(--el-bg-color);
   min-height: 100%;
+}
+
+@media (max-width: 768px) {
+  .vocab-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .vocab-header .el-input {
+    width: 100% !important;
+  }
 }
 
 .vocab-header {
